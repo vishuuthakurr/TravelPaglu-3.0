@@ -1,0 +1,472 @@
+{
+  "destinations": [
+    {
+      "_id": "dest_1",
+      "id": "dest_1",
+      "slug": "manali",
+      "name": "Manali",
+      "state": "Himachal Pradesh",
+      "mapCoordinates": {
+        "x": 34,
+        "y": 19,
+        "stateId": "HP"
+      },
+      "heroImage": "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=2000&q=85",
+      "quote": "A quiet morning chai in Old Manali overlooking the Beas will heal things you didn’t know were broken.",
+      "quoteAuthor": "Priyanshu (TravelPaglu Creator)",
+      "about": {
+        "history": "Named after Sage Manu who stepped off his ark here to recreate human life after the great flood (\"Manu-Alaya\"). Historically a crucial trade post on the Silk Route to Ladakh and Tibet.",
+        "culture": "Deeply rooted in Kullu pahadi traditions, wooden Kath-Kuni architecture, local deodars worship, vibrant winter carnivals, and quiet community life in upper villages.",
+        "geography": "Nestled at 2,050m (6,726 ft) in the Beas River Valley, surrounded by pine-covered slopes, high-altitude apple orchards, and the towering Pir Panjal ranges."
+      },
+      "howToReach": [
+        {
+          "mode": "HRTC Ordinary / Himgaura Bus (Most Budget-Friendly)",
+          "steps": "Reach Kashmiri Gate ISBT, Delhi -> Board evening HRTC Himgaura/Express bus (Departs 6:30 PM - 9:00 PM) -> 14h overnight scenic ride via Chandigarh & Mandi -> Arrive at Manali Bus Stand at 8:30 AM.",
+          "costPerPerson": 750,
+          "notes": "Book on hrtc.hp.gov.in. Ordinary seats are rugged; carry a jacket as nights in Mandi get chilly. Return follows the same route."
+        },
+        {
+          "mode": "HPTDC / Private AC Volvo Sleeper",
+          "steps": "Board Volvo semi-sleeper from Majnu Ka Tila, Delhi -> Overnight travel via Bilaspur & Aut Tunnel -> Private Bus Stand, Manali.",
+          "costPerPerson": 1100,
+          "notes": "Great if you have back pain or want plush charging ports. Avoid private touts at Delhi stations; book via official HPTDC or RedBus."
+        },
+        {
+          "mode": "Train + Bus Combo (Scenic & Ultra Budget)",
+          "steps": "Delhi (NDLS) to Chandigarh Junction via Kalka Shatabdi or Unreserved Mail (₹120-₹350) -> ISBT 43 Chandigarh -> HRTC bus to Manali (₹520).",
+          "costPerPerson": 670,
+          "notes": "Saves money if overnight bus seats are sold out in Delhi."
+        }
+      ],
+      "stay": {
+        "budget": [
+          {
+            "name": "Zostel Old Manali / Backpacker Homestays",
+            "type": "budget",
+            "price": "₹450 - ₹700 / night (Dorm bed)",
+            "notes": "Located along the upper stream in Old Manali. Great Wi-Fi, community bonfire nights, and clean shared washrooms."
+          },
+          {
+            "name": "Vashisht Village Traditional Homestay (e.g. Bhrigu View)",
+            "type": "budget",
+            "price": "₹600 - ₹900 / night (Private double room)",
+            "notes": "Across the river in Vashisht. 5 mins walk from natural hot sulphur springs, peaceful pahadi host families, and cheaper food."
+          }
+        ],
+        "premium": [
+          {
+            "name": "The Himalayan Castle & Cottages",
+            "type": "premium",
+            "price": "₹3,200 - ₹4,800 / night",
+            "notes": "Victorian-Gothic style castle amidst apple orchards with uninterrupted snow peak views of Rohtang pass."
+          },
+          {
+            "name": "Larisa Resort / Apple Country Resort",
+            "type": "premium",
+            "price": "₹4,500 - ₹6,000 / night",
+            "notes": "Luxury chalets with glass solariums, farm-to-table Himachali feasts, and heated mountain view jacuzzis."
+          }
+        ]
+      },
+      "food": [
+        {
+          "name": "Authentic Himachali Siddu with Ghee & Dal",
+          "price": "₹80 - ₹120",
+          "notes": "Steamed wheat dumpling stuffed with poppy seeds/walnuts. Must try at local auntie stalls in Old Manali market.",
+          "isVeg": true
+        },
+        {
+          "name": "Fresh Tirthan Trout Fish (Pan-Fried)",
+          "price": "₹300 - ₹420",
+          "notes": "Crispy river trout served with roasted garlic butter and lemon at Johnson’s Cafe or Dylan’s.",
+          "isVeg": false
+        },
+        {
+          "name": "Thukpa & Steamed Tingmo",
+          "price": "₹90 - ₹140",
+          "notes": "Tibetan comfort food made with fresh greens and bone broth in the Tibetan Monastery lane.",
+          "isVeg": true
+        },
+        {
+          "name": "Apple Pie & Fresh Cinnamon Roll",
+          "price": "₹70 - ₹110",
+          "notes": "Freshly harvested apples baked warm daily at Dylan’s Toasted & Roasted Coffee House.",
+          "isVeg": true
+        }
+      ],
+      "localTravel": [
+        {
+          "mode": "Rented Scooty (Activa / Jupiter)",
+          "price": "₹500 - ₹700 / day + ₹250 Petrol",
+          "notes": "Best for exploring Solang, Naggar Castle, and Vashisht at your own pace. Carry your physical driving license."
+        },
+        {
+          "mode": "Local HRTC Village Green Buses",
+          "price": "₹15 - ₹35 per ticket",
+          "notes": "Hop-on hop-off buses running between Mall Road, Naggar, Kullu, and Solang every 30 minutes."
+        },
+        {
+          "mode": "Shared Taxis / Autos",
+          "price": "₹50 - ₹100 / shared seat",
+          "notes": "Negotiate fixed rates before sitting or join fellow backpackers outside Mall Road auto stand."
+        }
+      ],
+      "placesToVisit": [
+        {
+          "name": "Jogini Waterfall Trek",
+          "image": "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80",
+          "blurb": "A beginner-friendly 45-minute pine trail from Vashisht temple leading to a majestic 150-ft cascading glacial waterfall."
+        },
+        {
+          "name": "Old Manali Cobblestone Alleys",
+          "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+          "blurb": "Lined with wooden apple-wood houses, indie cafes, acoustic guitar sessions, and hand-knit woolen stores."
+        },
+        {
+          "name": "Naggar Castle & Roerich Art Gallery",
+          "image": "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=800&q=80",
+          "blurb": "15th-century wood-and-stone castle overlooking the Beas valley with Himalayan art and peaceful balcony views."
+        },
+        {
+          "name": "Sissu & Atal Tunnel Valley",
+          "image": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80",
+          "blurb": "Drive through the 9.02km engineering marvel to emerge into the moonscapes of Lahaul with giant waterfall drops."
+        }
+      ],
+      "proTips": [
+        "Never take private cabs hailed at Delhi bus stands — always pre-book HRTC on their official portal for guaranteed seats and fixed pricing.",
+        "Stay in Old Manali or Vashisht instead of Mall Road. Mall Road is noisy and commercialized; Old Manali has pine breezes and authentic student vibe.",
+        "Avoid high-priced snow-suit rentals near Solang if not doing deep snow activities — regular winter thermals and a waterproof jacket are plenty.",
+        "Always carry cash (₹2,000 min) — ATMs in Vashisht and Sissu frequently run out of electricity or network.",
+        "Respect mountain silence: Do not play loud portable speakers on hiking trails. The sound of Beas river is the real soundtrack."
+      ],
+      "budgetItems": [
+        {
+          "label": "Delhi to Manali Return HRTC Bus",
+          "amount": 1500,
+          "category": "Travel"
+        },
+        {
+          "label": "3 Nights Backpacker Hostel / Homestay (₹500/night)",
+          "amount": 1500,
+          "category": "Stay"
+        },
+        {
+          "label": "Food & Chai (3 Days @ ₹350/day)",
+          "amount": 1050,
+          "category": "Food"
+        },
+        {
+          "label": "Scooty Rental + Shared Bus Share",
+          "amount": 550,
+          "category": "Local Transport"
+        },
+        {
+          "label": "Entry Tickets & Hot Springs / Misc",
+          "amount": 200,
+          "category": "Misc"
+        }
+      ],
+      "totalPerPerson": 4800,
+      "gallery": [
+        {
+          "url": "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80",
+          "caption": "Morning sun breaking over the snow-dusted pine ridges in Old Manali."
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+          "caption": "Traditional wooden Himachali architecture tucked into apple groves."
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80",
+          "caption": "Resting by the cool mist of Jogini Waterfall after the forest hike."
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80",
+          "caption": "Glacial streams cutting through the rugged valleys of Lahaul near Sissu."
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=800&q=80",
+          "caption": "Overlooking the Beas river basin from the wooden balconies of Naggar Castle."
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80",
+          "caption": "Golden hour lights hitting the Himalayan peaks at 3,000 meters."
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1508873696983-2df5293cb32b?auto=format&fit=crop&w=800&q=80",
+          "caption": "Fresh steamed Siddu and ginger tea served hot on a chilly afternoon."
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80",
+          "caption": "Quiet cedar forest paths where you can walk for hours without seeing vehicles."
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1518457607834-6e8d80c183c5?auto=format&fit=crop&w=800&q=80",
+          "caption": "Starlit night skies over the mountain homestay rooftop."
+        }
+      ],
+      "tags": [
+        "Mountains",
+        "Budget",
+        "Treks",
+        "Nature",
+        "Himachal"
+      ],
+      "stateMapHighlight": "HP"
+    },
+    {
+      "_id": "dest_2",
+      "id": "dest_2",
+      "slug": "banaras",
+      "name": "Banaras (Varanasi)",
+      "state": "Uttar Pradesh",
+      "mapCoordinates": {
+        "x": 58,
+        "y": 42,
+        "stateId": "UP"
+      },
+      "heroImage": "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=2000&q=85",
+      "quote": "Banaras is older than history, older than tradition, older even than legend, and looks twice as old as all of them put together.",
+      "quoteAuthor": "Mark Twain (quoted by Rahul at TravelPaglu)",
+      "about": {
+        "history": "Continuously inhabited for over 3,000 years, Varanasi is the spiritual epicenter of India. Pilgrims, philosophers, and seekers have walked these alleyways since the Vedic era.",
+        "culture": "Life revolves around the sacred Ganga, dawn Subah-e-Banaras classical music at Assi Ghat, evening Maha Aarti at Dashashwamedh, silk weaving traditions, and deep spiritual introspection.",
+        "geography": "Located on the crescent-shaped western bank of the sacred Ganga river in eastern Uttar Pradesh, characterized by high stone ghat steps and labyrinthine historic lanes (galis)."
+      },
+      "howToReach": [
+        {
+          "mode": "Direct Train (Vande Bharat / Express Sleeper)",
+          "steps": "New Delhi (NDLS) -> Varanasi Jn (BSB) / Banaras (BSBS) via Vande Bharat Express (8h) or Shiv Ganga Express overnight sleeper (11h).",
+          "costPerPerson": 420,
+          "notes": "Sleeper class on Shiv Ganga is ₹420; 3AC is ₹1,100. Book 20 days prior on IRCTC. Banaras station is cleanest."
+        },
+        {
+          "mode": "UPSRTC AC Janrath / Sleeper Bus",
+          "steps": "Lucknow / Prayagraj -> Direct UPSRTC AC Janrath Bus to Varanasi Cantt Bus Stand.",
+          "costPerPerson": 380,
+          "notes": "Runs every hour from Charbagh Lucknow and Civil Lines Prayagraj."
+        },
+        {
+          "mode": "Flight (Lal Bahadur Shastri Airport, Babatpur)",
+          "steps": "Direct flights from Delhi/Mumbai/Bengaluru to VNS -> Take Airport AC Electric Bus (₹100) to Godowlia.",
+          "costPerPerson": 2200,
+          "notes": "Take the green UPSRTC electric bus instead of airport prepaid taxis (₹900) to save money."
+        }
+      ],
+      "stay": {
+        "budget": [
+          {
+            "name": "Ghat-View Backpacker Hostels (Assi / Pandey Ghat)",
+            "type": "budget",
+            "price": "₹350 - ₹600 / night (Bunk bed)",
+            "notes": "Hostels like Moustache, Stops, or Ganges View. Walking distance to Ghats, peaceful rooftop yoga views, student-friendly."
+          },
+          {
+            "name": "Heritage Gali Dharamshala / Traditional Haveli",
+            "type": "budget",
+            "price": "₹500 - ₹800 / night (Double room)",
+            "notes": "Authentic 100-year-old brick rooms inside the narrow alleys of Kedar Ghat. Incredibly atmospheric and serene."
+          }
+        ],
+        "premium": [
+          {
+            "name": "BrijRama Palace Heritage Hotel",
+            "type": "premium",
+            "price": "₹14,000 - ₹22,000 / night",
+            "notes": "18th-century palace situated right on Darbhanga Ghat, reached exclusively by private wooden royal boat."
+          },
+          {
+            "name": "Taj Ganges / Nadesar Palace",
+            "type": "premium",
+            "price": "₹8,500 - ₹15,000 / night",
+            "notes": "Sprawling palace gardens and traditional luxury hospitality in the heritage cantonment."
+          }
+        ]
+      },
+      "food": [
+        {
+          "name": "Kachori Sabzi & Crispy Jalebi (Breakfast)",
+          "price": "₹40 - ₹60",
+          "notes": "Hot urad dal kachoris served on leaf plates with spicy potato gravy at Ram Bhandar (Chowk) or Madhur Jalpan.",
+          "isVeg": true
+        },
+        {
+          "name": "Blue Lassi / Pahalwan Lassi (Thick Malai)",
+          "price": "₹60 - ₹100",
+          "notes": "Hand-churned creamy yoghurt topped with pomegranate, dry fruits, and rabri in a clay kullhad near Manikarnika.",
+          "isVeg": true
+        },
+        {
+          "name": "Banarasi Meetha Paan",
+          "price": "₹20 - ₹40",
+          "notes": "Magahi paan leaf stuffed with gulkand, supari, and silver leaf. Keshav Tambool at Ravidas Gate is iconic.",
+          "isVeg": true
+        },
+        {
+          "name": "Tamatar Chaat & Chooda Matar",
+          "price": "₹40 - ₹70",
+          "notes": "Unique tomato reduction chaat with ghee and hing syrup at Kashi Chaat Bhandar, Godowlia.",
+          "isVeg": true
+        }
+      ],
+      "localTravel": [
+        {
+          "mode": "Walking the Continuous Ghats",
+          "price": "₹0 (Free & Best Experience)",
+          "notes": "You can walk uninterrupted for 6 kilometers from Assi Ghat all the way to Raj Ghat along stone steps."
+        },
+        {
+          "mode": "Shared E-Rickshaws (Tuk-Tuk)",
+          "price": "₹15 - ₹30 per ride",
+          "notes": "Operates continuously between Godowlia, Assi Ghat, Lanka (BHU), and Cantt Railway Station."
+        },
+        {
+          "mode": "Early Morning Hand-Rowed Wooden Boat",
+          "price": "₹100 - ₹150 per seat (Shared)",
+          "notes": "Take shared boat at 5:30 AM from Assi Ghat to Dashashwamedh. Negotiate politely; avoid overpriced motorboats."
+        }
+      ],
+      "placesToVisit": [
+        {
+          "name": "Assi Ghat Subah-e-Banaras",
+          "image": "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80",
+          "blurb": "Experience the 5:00 AM Vedic chantings, classical sitar recitals, and morning sun salutations by the Ganga."
+        },
+        {
+          "name": "Kashi Vishwanath Corridor & Historic Galis",
+          "image": "https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=800&q=80",
+          "blurb": "The sacred Jyotirlinga complex flanked by ancient narrow winding alleyways steeped in scent of flowers and incense."
+        },
+        {
+          "name": "Dashashwamedh Ghat Evening Maha Aarti",
+          "image": "https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=800&q=80",
+          "blurb": "Grand synchronized multi-tiered brass lamp ritual performed by young priests at sunset amidst ringing bells."
+        },
+        {
+          "name": "Sarnath Deer Park & Dhamek Stupa",
+          "image": "https://images.unsplash.com/photo-1599839575945-a9e5af0c3fa5?auto=format&fit=crop&w=800&q=80",
+          "blurb": "Just 10 km away where Lord Buddha delivered his first sermon; tranquil gardens and 5th-century Ashokan pillars."
+        }
+      ],
+      "proTips": [
+        "Wake up at 5:00 AM! Banaras is most magical and peaceful at dawn before the crowds and motorcycle horns start in the alleys.",
+        "Never accept unsolicited guide services near Manikarnika Ghat or Vishwanath corridor claiming to show \"special wood donation centers\" — these are well-known commission traps.",
+        "Keep your footwear safe: when visiting temples, use the locker services inside the official corridor rather than private shops.",
+        "Wear modest, comfortable walking shoes. The galis are best explored on foot, and stone steps can be slippery when wet.",
+        "Sit on the steps of Munshi Ghat or Scindia Ghat at midnight for deep tranquility listening to the river lapping the stones."
+      ],
+      "budgetItems": [
+        {
+          "label": "Round-trip Sleeper Train (Delhi-Varanasi)",
+          "amount": 840,
+          "category": "Travel"
+        },
+        {
+          "label": "2 Nights Backpacker Hostel @ Assi Ghat (₹450/night)",
+          "amount": 900,
+          "category": "Stay"
+        },
+        {
+          "label": "Authentic Street Food, Chaat & Lassi (3 Days)",
+          "amount": 750,
+          "category": "Food"
+        },
+        {
+          "label": "Morning Shared Boat Ride + E-Rickshaws",
+          "amount": 360,
+          "category": "Local Transport"
+        },
+        {
+          "label": "Temple Locker & Sarnath Entry Fee",
+          "amount": 150,
+          "category": "Misc"
+        }
+      ],
+      "totalPerPerson": 3000,
+      "gallery": [
+        {
+          "url": "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80",
+          "caption": "Morning sun casting warm amber glow across the stone steps of Varanasi Ghats."
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=800&q=80",
+          "caption": "Synchronized brass lamps glowing bright during the sacred Ganga Aarti ceremony."
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=800&q=80",
+          "caption": "Wooden rowing boats floating gently across the quiet mist of early dawn."
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1599839575945-a9e5af0c3fa5?auto=format&fit=crop&w=800&q=80",
+          "caption": "Ancient Dhamek Stupa at Sarnath where timeless wisdom was first spoken."
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1548013146-72479768bbaa?auto=format&fit=crop&w=800&q=80",
+          "caption": "Flocks of Siberian migratory seagulls hovering near morning boats on the Ganga."
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=800&q=80",
+          "caption": "Narrow labyrinthine alleyways filled with colors, temple bells, and heritage havelis."
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80",
+          "caption": "Devotees offering floating earthen diya lamps onto the calm sacred river."
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1517824806704-9040b037703b?auto=format&fit=crop&w=800&q=80",
+          "caption": "A clay kullhad of thick, saffron-infused creamy Banarasi Lassi."
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+          "caption": "Twilight reflections of riverside palaces on the calm surface of the Ganges."
+        }
+      ],
+      "tags": [
+        "Spiritual",
+        "Heritage",
+        "Budget",
+        "Culture",
+        "Uttar Pradesh"
+      ],
+      "stateMapHighlight": "UP"
+    }
+  ],
+  "users": [
+    {
+      "id": "user_admin_1",
+      "name": "Priyanshu (Admin)",
+      "email": "admin@travelpaglu.com",
+      "passwordHash": "$2a$10$uFDsVoOtMf7kcUxF6jOxB.fT8g0dfohlA.UP3YCeEynzhDBJ2hLH.",
+      "role": "admin",
+      "homeCity": "Delhi",
+      "interests": [
+        "Mountains",
+        "Spiritual",
+        "Budget",
+        "Offbeat"
+      ],
+      "savedDestinations": [
+        "manali",
+        "banaras"
+      ]
+    },
+    {
+      "id": "user_student_1",
+      "name": "Aarav Sharma",
+      "email": "student@travelpaglu.com",
+      "passwordHash": "$2a$10$uFDsVoOtMf7kcUxF6jOxB.dC9usk.1ZmSyzoHBoTb4LoYLVn9dDci",
+      "role": "user",
+      "homeCity": "Kanpur",
+      "interests": [
+        "Budget",
+        "Mountains",
+        "Treks"
+      ],
+      "savedDestinations": [
+        "manali"
+      ]
+    }
+  ]
+}
