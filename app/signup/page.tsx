@@ -4,8 +4,22 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { Compass, Lock, Mail, User, MapPin, Tag, ArrowRight, AlertCircle, Check } from 'lucide-react';
+import {
+  Compass,
+  Lock,
+  Mail,
+  User,
+  MapPin,
+  Tag,
+  ArrowRight,
+  AlertCircle,
+  Check,
+  Eye,
+  EyeOff,
+  ShieldCheck,
+} from 'lucide-react';
 import Navbar from '@/components/Navbar';
+import { validatePasswordStrength } from '@/lib/security';
 
 const AVAILABLE_INTERESTS = [
   'Mountains',
@@ -24,6 +38,7 @@ export default function SignupPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [homeCity, setHomeCity] = useState('');
   const [selectedInterests, setSelectedInterests] = useState<string[]>(['Budget', 'Mountains']);
   const [error, setError] = useState('');
@@ -37,9 +52,17 @@ export default function SignupPage() {
     }
   };
 
+  const passValidation = validatePasswordStrength(password);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+
+    if (!passValidation.isValid) {
+      setError(passValidation.message || 'Password must be at least 8 characters with a number or symbol.');
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -147,19 +170,48 @@ export default function SignupPage() {
 
               <div>
                 <label className="block text-xs font-bold text-forest-800 uppercase tracking-wider mb-1">
-                  Password
+                  Password (min 8 characters)
                 </label>
                 <div className="relative">
                   <input
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Create secure password"
-                    className="w-full pl-10 pr-4 py-2.5 text-sm bg-white border border-forest-200 rounded-xl focus:ring-2 focus:ring-forest-500 focus:outline-none"
+                    placeholder="At least 8 characters with numbers"
+                    className="w-full pl-10 pr-10 py-2.5 text-sm bg-white border border-forest-200 rounded-xl focus:ring-2 focus:ring-forest-500 focus:outline-none"
                   />
                   <Lock className="w-4 h-4 text-forest-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-forest-400 hover:text-forest-700"
+                  >
+                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
                 </div>
+
+                {/* Password Strength Indicator */}
+                {password.length > 0 && (
+                  <div className="mt-1.5 flex items-center gap-2">
+                    <div className="flex-1 h-1.5 bg-forest-100 rounded-full overflow-hidden flex gap-0.5">
+                      <div
+                        className={`h-full ${
+                          passValidation.score >= 1
+                            ? passValidation.score >= 3
+                              ? 'bg-emerald-500 w-full'
+                              : passValidation.score >= 2
+                              ? 'bg-amber-500 w-2/3'
+                              : 'bg-red-500 w-1/3'
+                            : 'w-0'
+                        } transition-all duration-300`}
+                      />
+                    </div>
+                    <span className="text-[10px] font-bold text-forest-600">
+                      {passValidation.score >= 3 ? 'Strong' : passValidation.score >= 2 ? 'Medium' : 'Weak'}
+                    </span>
+                  </div>
+                )}
               </div>
 
               <div>
@@ -210,7 +262,7 @@ export default function SignupPage() {
                 disabled={loading}
                 className="w-full py-3 rounded-xl bg-gradient-to-r from-terracotta-500 to-terracotta-600 hover:from-terracotta-600 hover:to-terracotta-700 text-white font-bold text-sm shadow-md hover:shadow-lg transition flex items-center justify-center gap-2 mt-4"
               >
-                <span>{loading ? 'Creating Account...' : 'Create Account & Explore'}</span>
+                <span>{loading ? 'Securing Account...' : 'Create Account & Explore'}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </form>

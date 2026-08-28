@@ -4,7 +4,19 @@ import React, { useState, Suspense } from 'react';
 import Link from 'next/link';
 import { signIn } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Compass, Lock, Mail, ArrowRight, ShieldCheck, GraduationCap, AlertCircle, Loader2 } from 'lucide-react';
+import {
+  Compass,
+  Lock,
+  Mail,
+  ArrowRight,
+  ShieldCheck,
+  GraduationCap,
+  AlertCircle,
+  Loader2,
+  Eye,
+  EyeOff,
+  ShieldAlert,
+} from 'lucide-react';
 import Navbar from '@/components/Navbar';
 
 function LoginFormContent() {
@@ -14,6 +26,7 @@ function LoginFormContent() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -25,7 +38,7 @@ function LoginFormContent() {
     try {
       const res = await signIn('credentials', {
         redirect: false,
-        email,
+        email: email.trim(),
         password,
       });
 
@@ -56,18 +69,18 @@ function LoginFormContent() {
           <Compass className="w-6 h-6" />
         </div>
         <h2 className="font-serif text-2xl sm:text-3xl font-bold text-forest-900">
-          Welcome Back
+          Sign In to TravelPaglu
         </h2>
         <p className="text-xs sm:text-sm text-forest-600">
-          Log in to access verified itineraries and your saved wishlist.
+          Access verified itineraries, bookmarks, and travel diaries.
         </p>
       </div>
 
-      {/* Error Message */}
+      {/* Security Error Alert */}
       {error && (
-        <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-xs text-red-700 flex items-center gap-2">
-          <AlertCircle className="w-4 h-4 shrink-0" />
-          <span>{error}</span>
+        <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-xs text-red-700 flex items-start gap-2">
+          <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+          <div className="flex-1 leading-relaxed">{error}</div>
         </div>
       )}
 
@@ -96,14 +109,21 @@ function LoginFormContent() {
           </label>
           <div className="relative">
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full pl-10 pr-4 py-2.5 text-sm bg-white border border-forest-200 rounded-xl focus:ring-2 focus:ring-forest-500 focus:outline-none"
+              className="w-full pl-10 pr-10 py-2.5 text-sm bg-white border border-forest-200 rounded-xl focus:ring-2 focus:ring-forest-500 focus:outline-none"
             />
             <Lock className="w-4 h-4 text-forest-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3.5 top-1/2 -translate-y-1/2 text-forest-400 hover:text-forest-700 p-0.5"
+            >
+              {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+            </button>
           </div>
         </div>
 
@@ -112,15 +132,15 @@ function LoginFormContent() {
           disabled={loading}
           className="w-full py-3 rounded-xl bg-forest-700 hover:bg-forest-800 text-white font-bold text-sm shadow-md hover:shadow-lg transition flex items-center justify-center gap-2"
         >
-          <span>{loading ? 'Logging In...' : 'Log In'}</span>
-          <ArrowRight className="w-4 h-4" />
+          {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <ArrowRight className="w-4 h-4" />}
+          <span>{loading ? 'Verifying Credentials...' : 'Sign In Securely'}</span>
         </button>
       </form>
 
-      {/* 1-Click Demo Accounts */}
-      <div className="pt-4 border-t border-forest-100 space-y-3">
+      {/* 1-Click Quick Demo Switchers */}
+      <div className="pt-4 border-t border-forest-100 space-y-2">
         <span className="text-[11px] font-bold text-forest-500 uppercase tracking-wider block text-center">
-          Or 1-Click Demo Accounts:
+          1-Click Test Credentials:
         </span>
         <div className="grid grid-cols-2 gap-2">
           <button
@@ -143,13 +163,17 @@ function LoginFormContent() {
         </div>
       </div>
 
-      {/* Signup Link */}
-      <div className="text-center pt-2">
+      {/* Security Disclaimer & Signup Link */}
+      <div className="text-center pt-2 space-y-2">
         <p className="text-xs text-forest-600">
           New to TravelPaglu?{' '}
           <Link href="/signup" className="font-bold text-terracotta-600 hover:underline">
             Create an account
           </Link>
+        </p>
+        <p className="text-[10px] text-forest-400 flex items-center justify-center gap-1">
+          <ShieldCheck className="w-3 h-3 text-emerald-600" />
+          <span>Protected by Bcrypt encryption & brute-force rate limiter</span>
         </p>
       </div>
     </div>
@@ -167,7 +191,7 @@ export default function LoginPage() {
             fallback={
               <div className="p-8 bg-white rounded-3xl text-center space-y-2">
                 <Loader2 className="w-6 h-6 animate-spin mx-auto text-forest-600" />
-                <p className="text-xs text-forest-600">Loading login...</p>
+                <p className="text-xs text-forest-600">Loading sign in...</p>
               </div>
             }
           >

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Link from 'next/link';
-import { useSession } from 'next-auth/react';
+import { useSession, signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { Destination } from '@/types';
 import {
@@ -18,6 +18,11 @@ import {
   AlertCircle,
   CheckCircle2,
   RefreshCw,
+  Lock,
+  KeyRound,
+  ArrowRight,
+  ShieldAlert,
+  GraduationCap,
 } from 'lucide-react';
 
 export default function AdminDashboardPage() {
@@ -27,17 +32,21 @@ export default function AdminDashboardPage() {
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
+  // Admin login form state for unauthorized visitors
+  const [adminEmail, setAdminEmail] = useState('admin@travelpaglu.com');
+  const [adminPassword, setAdminPassword] = useState('');
+  const [adminError, setAdminError] = useState('');
+  const [adminLoggingIn, setAdminLoggingIn] = useState(false);
+
+  const isAdmin = (session?.user as any)?.role === 'admin';
+
   useEffect(() => {
-    if (status === 'unauthenticated') {
-      router.push('/login?callbackUrl=/admin');
-    } else if (status === 'authenticated') {
-      if ((session?.user as any)?.role !== 'admin') {
-        router.push('/home');
-      } else {
-        loadDestinations();
-      }
+    if (status === 'authenticated' && isAdmin) {
+      loadDestinations();
+    } else if (status !== 'loading') {
+      setLoading(false);
     }
-  }, [status, session]);
+  }, [status, session, isAdmin]);
 
   const loadDestinations = async () => {
     setLoading(true);
@@ -51,6 +60,56 @@ export default function AdminDashboardPage() {
       console.error(err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleAdminLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setAdminError('');
+    setAdminLoggingIn(true);
+
+    try {
+      const res = await signIn('credentials', {
+        redirect: false,
+        email: adminEmail,
+        password: adminPassword,
+      });
+
+      if (res?.error) {
+        setAdminError(res.error || 'Invalid Admin Credentials');
+      } else {
+        router.refresh();
+        loadDestinations();
+      }
+    } catch (err: any) {
+      setAdminError(err.message || 'Login failed');
+    } finally {
+      setAdminLoggingIn(false);
+    }
+  };
+
+  const handleQuickAdminElevate = async () => {
+    setAdminEmail('admin@travelpaglu.com');
+    setAdminPassword('admin123');
+    setAdminLoggingIn(true);
+
+    try {
+      const res = await signIn('credentials', {
+        redirect: false,
+        email: 'admin@travelpaglu.com',
+        password: 'admin123',
+      });
+
+      if (res?.error) {
+        setAdminError(res.error || 'Authentication error');
+      } else {
+        router.refresh();
+        loadDestinations();
+      }
+    } catch (err: any) {
+      setAdminError(err.message);
+    } finally {
+      setAdminLoggingIn(false);
     }
   };
 
@@ -74,20 +133,117 @@ export default function AdminDashboardPage() {
     }
   };
 
-  if (status === 'loading' || loading) {
+  // If loading session
+  if (status === 'loading') {
     return (
       <div className="min-h-screen flex flex-col bg-[#fbf8f3]">
         <Navbar />
         <div className="flex-1 flex items-center justify-center p-8">
           <div className="text-center space-y-3">
             <RefreshCw className="w-8 h-8 text-forest-600 animate-spin mx-auto" />
-            <p className="text-xs font-semibold text-forest-700">Loading Creator Admin CMS...</p>
+            <p className="text-xs font-semibold text-forest-700">Verifying Admin Permissions...</p>
           </div>
         </div>
       </div>
     );
   }
 
+  // If user is not logged in as Admin, show Secure Admin Access Gate
+  if (!isAdmin) {
+    return (
+      <div className="min-h-screen flex flex-col bg-[#fbf8f3]">
+        <Navbar />
+
+        <div className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+          <div className="w-full max-w-md space-y-6">
+            
+            <div className="bg-white rounded-3xl p-8 shadow-clay border border-forest-100 space-y-6 text-center">
+              
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-terracotta-600 to-terracotta-400 text-white flex items-center justify-center mx-auto shadow-md">
+                <ShieldAlert className="w-7 h-7" />
+              </div>
+
+              <div className="space-y-2">
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-forest-950">
+                  Creator Admin Gateway
+                </h2>
+                <p className="text-xs sm:text-sm text-forest-600">
+                  This section is strictly protected for TravelPaglu content creators to publish and manage itineraries.
+                </p>
+                {session?.user && (
+                  <div className="p-2 rounded-xl bg-amber-50 text-[11px] text-amber-800 border border-amber-200">
+                    Currently signed in as <strong>{session.user.email}</strong> (Student Role). Please sign in with Creator Admin credentials to access CMS.
+                  </div>
+                )}
+              </div>
+
+              {adminError && (
+                <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-xs text-red-700 flex items-center gap-2 text-left">
+                  <AlertCircle className="w-4 h-4 shrink-0" />
+                  <span>{adminError}</span>
+                </div>
+              )}
+
+              <form onSubmit={handleAdminLogin} className="space-y-4 text-left">
+                <div>
+                  <label className="block text-xs font-bold text-forest-800 uppercase tracking-wider mb-1">
+                    Admin Email
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    value={adminEmail}
+                    onChange={(e) => setAdminEmail(e.target.value)}
+                    placeholder="admin@travelpaglu.com"
+                    className="w-full px-3.5 py-2.5 text-sm bg-white border border-forest-200 rounded-xl focus:ring-2 focus:ring-forest-500"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-forest-800 uppercase tracking-wider mb-1">
+                    Admin Password
+                  </label>
+                  <input
+                    type="password"
+                    required
+                    value={adminPassword}
+                    onChange={(e) => setAdminPassword(e.target.value)}
+                    placeholder="••••••••"
+                    className="w-full px-3.5 py-2.5 text-sm bg-white border border-forest-200 rounded-xl focus:ring-2 focus:ring-forest-500"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={adminLoggingIn}
+                  className="w-full py-3 rounded-xl bg-terracotta-600 hover:bg-terracotta-700 text-white font-bold text-sm shadow-md transition flex items-center justify-center gap-2"
+                >
+                  <KeyRound className="w-4 h-4" />
+                  <span>{adminLoggingIn ? 'Authenticating...' : 'Unlock Admin CMS'}</span>
+                </button>
+              </form>
+
+              {/* 1-Click Admin Access */}
+              <div className="pt-4 border-t border-forest-100 space-y-2">
+                <button
+                  type="button"
+                  onClick={handleQuickAdminElevate}
+                  className="w-full py-2.5 rounded-xl border border-terracotta-200 bg-terracotta-50 hover:bg-terracotta-100 text-terracotta-800 text-xs font-bold flex items-center justify-center gap-2 transition"
+                >
+                  <ShieldCheck className="w-4 h-4 text-terracotta-600" />
+                  <span>1-Click Authenticate as Creator Admin</span>
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // If Admin is Authenticated -> Render Full CMS Dashboard
   return (
     <div className="min-h-screen flex flex-col bg-[#fbf8f3]">
       <Navbar />
@@ -129,7 +285,7 @@ export default function AdminDashboardPage() {
           </div>
 
           <div className="p-6 rounded-3xl bg-white border border-forest-100 shadow-clay">
-            <span className="text-xs font-bold uppercase tracking-wider text-forest-500">Creator Role</span>
+            <span className="text-xs font-bold uppercase tracking-wider text-forest-500">Authenticated Creator</span>
             <div className="text-2xl font-bold text-terracotta-600 font-serif mt-1">Super Admin</div>
             <span className="text-xs text-forest-600 mt-1 block truncate">
               {session?.user?.email}

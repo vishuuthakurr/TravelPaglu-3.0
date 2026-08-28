@@ -19,7 +19,7 @@ export default function EditDestinationPage() {
 
   useEffect(() => {
     if (status === 'unauthenticated' || (status === 'authenticated' && (session?.user as any)?.role !== 'admin')) {
-      router.push('/home');
+      router.push('/admin');
       return;
     }
 

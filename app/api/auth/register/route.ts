@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createUser, findUserByEmail } from '@/lib/storage';
+import { validatePasswordStrength } from '@/lib/security';
 
 export async function POST(req: NextRequest) {
   try {
@@ -10,17 +11,27 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Name, email and password are required.' }, { status: 400 });
     }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email.trim())) {
+      return NextResponse.json({ error: 'Please provide a valid email address.' }, { status: 400 });
+    }
+
+    const passCheck = validatePasswordStrength(password);
+    if (!passCheck.isValid) {
+      return NextResponse.json({ error: passCheck.message || 'Password does not meet security requirements.' }, { status: 400 });
+    }
+
     const existing = await findUserByEmail(email);
     if (existing) {
       return NextResponse.json({ error: 'An account with this email already exists.' }, { status: 409 });
     }
 
     const newUser = await createUser({
-      name,
-      email,
+      name: name.trim(),
+      email: email.trim(),
       password,
-      homeCity,
-      interests,
+      homeCity: (homeCity || '').trim(),
+      interests: interests || [],
       role: 'user',
     });
 

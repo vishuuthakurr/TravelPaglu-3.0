@@ -16,7 +16,7 @@ export default function NewDestinationPage() {
   }
 
   if (status === 'unauthenticated' || (session?.user as any)?.role !== 'admin') {
-    router.push('/home');
+    router.push('/admin');
     return null;
   }
 

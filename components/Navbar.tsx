@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useSession, signOut } from 'next-auth/react';
-import { Compass, Search, MapPin, User, LogOut, ShieldCheck, Heart, Menu, X, Sparkles } from 'lucide-react';
+import { Compass, Search, MapPin, User, LogOut, ShieldCheck, Heart, Menu, X, Sparkles, Shield } from 'lucide-react';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -74,7 +74,7 @@ export default function Navbar() {
           </form>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-1.5">
+          <nav className="hidden lg:flex items-center gap-2">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -92,19 +92,24 @@ export default function Navbar() {
               );
             })}
 
-            {isAdmin && (
-              <Link
-                href="/admin"
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors ${
-                  pathname.startsWith('/admin')
-                    ? 'bg-terracotta-600 text-white shadow-sm'
-                    : 'bg-terracotta-50 text-terracotta-700 hover:bg-terracotta-100 border border-terracotta-200'
-                }`}
-              >
-                <ShieldCheck className="w-3.5 h-3.5" />
-                Admin CMS
-              </Link>
-            )}
+            {/* Always-visible Admin Portal Link */}
+            <Link
+              href="/admin"
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all ${
+                pathname.startsWith('/admin')
+                  ? 'bg-terracotta-600 text-white shadow-sm'
+                  : isAdmin
+                  ? 'bg-terracotta-50 text-terracotta-700 hover:bg-terracotta-100 border border-terracotta-200'
+                  : 'bg-stone-100 text-stone-700 hover:bg-terracotta-50 hover:text-terracotta-700 border border-stone-200'
+              }`}
+              title="Creator Admin CMS Panel"
+            >
+              <ShieldCheck className="w-3.5 h-3.5 text-terracotta-600" />
+              <span>Admin Panel</span>
+              {isAdmin && (
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              )}
+            </Link>
           </nav>
 
           {/* Right Action / User Area */}
@@ -150,16 +155,14 @@ export default function Navbar() {
                         My Profile & Wishlist
                       </Link>
 
-                      {isAdmin && (
-                        <Link
-                          href="/admin"
-                          onClick={() => setUserDropdownOpen(false)}
-                          className="flex items-center gap-2 px-4 py-2 text-xs text-terracotta-700 hover:bg-terracotta-50 font-medium"
-                        >
-                          <ShieldCheck className="w-3.5 h-3.5" />
-                          Admin CMS Panel
-                        </Link>
-                      )}
+                      <Link
+                        href="/admin"
+                        onClick={() => setUserDropdownOpen(false)}
+                        className="flex items-center gap-2 px-4 py-2 text-xs text-terracotta-700 hover:bg-terracotta-50 font-semibold border-t border-forest-50"
+                      >
+                        <ShieldCheck className="w-3.5 h-3.5 text-terracotta-600" />
+                        <span>Admin CMS Panel</span>
+                      </Link>
 
                       <button
                         onClick={() => {
@@ -226,15 +229,14 @@ export default function Navbar() {
                   {link.name}
                 </Link>
               ))}
-              {isAdmin && (
-                <Link
-                  href="/admin"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="px-3 py-2 rounded-lg text-sm font-semibold text-terracotta-700 bg-terracotta-50"
-                >
-                  Admin CMS Panel
-                </Link>
-              )}
+              <Link
+                href="/admin"
+                onClick={() => setMobileMenuOpen(false)}
+                className="px-3 py-2 rounded-lg text-sm font-semibold text-terracotta-700 bg-terracotta-50 flex items-center gap-2"
+              >
+                <ShieldCheck className="w-4 h-4" />
+                <span>Admin CMS Panel</span>
+              </Link>
             </div>
           </div>
         )}

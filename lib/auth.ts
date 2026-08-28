@@ -2,6 +2,7 @@ import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
 import { findUserByEmail } from './storage';
+import { checkRateLimit, recordFailedAttempt, resetAttempts } from './security';
 
 export const authOptions: NextAuthOptions = {
   session: {
@@ -20,15 +21,36 @@ export const authOptions: NextAuthOptions = {
           throw new Error('Please enter your email and password');
         }
 
-        const user = await findUserByEmail(credentials.email);
+        const email = credentials.email.toLowerCase().trim();
+
+        // 1. Rate Limiting Check
+        const rateCheck = checkRateLimit(email);
+        if (!rateCheck.allowed) {
+          throw new Error(
+            `Account temporarily locked due to multiple failed login attempts. Please try again in ${rateCheck.retryAfterSeconds} seconds.`
+          );
+        }
+
+        const user = await findUserByEmail(email);
         if (!user || !user.password) {
-          throw new Error('No user found with this email');
+          const attempt = recordFailedAttempt(email);
+          if (attempt.locked) {
+            throw new Error(`Too many failed attempts. Account locked for 5 minutes.`);
+          }
+          throw new Error(`Invalid credentials. (${attempt.remainingAttempts} attempts remaining before temporary lockout)`);
         }
 
         const isValid = await bcrypt.compare(credentials.password, user.password);
         if (!isValid) {
-          throw new Error('Invalid password');
+          const attempt = recordFailedAttempt(email);
+          if (attempt.locked) {
+            throw new Error(`Too many failed attempts. Account locked for 5 minutes.`);
+          }
+          throw new Error(`Invalid credentials. (${attempt.remainingAttempts} attempts remaining before temporary lockout)`);
         }
+
+        // 2. Successful Login -> Reset attempts
+        resetAttempts(email);
 
         return {
           id: user.id || user._id,

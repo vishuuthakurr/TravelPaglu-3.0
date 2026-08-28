@@ -467,6 +467,23 @@
       "savedDestinations": [
         "manali"
       ]
+    },
+    {
+      "id": "user_1787918568091",
+      "name": "Vaibhav Singh",
+      "email": "vaibhavsingh.2430592@gmail.com",
+      "passwordHash": "$2a$10$Pb2eGh72eoE7BYmUmo8/sub4Vv3z5kengYnrVkwkdPYqf1HKisPku",
+      "role": "user",
+      "homeCity": "Kanpur",
+      "interests": [
+        "Budget",
+        "Mountains",
+        "Spiritual",
+        "Treks",
+        "Heritage",
+        "Beaches"
+      ],
+      "savedDestinations": []
     }
   ]
 }
