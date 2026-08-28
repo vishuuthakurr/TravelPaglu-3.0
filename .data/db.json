@@ -431,6 +431,127 @@
         "Uttar Pradesh"
       ],
       "stateMapHighlight": "UP"
+    },
+    {
+      "name": "Rishikesh",
+      "slug": "rishikesh",
+      "state": "Uttrakhand",
+      "mapCoordinates": {
+        "x": 30,
+        "y": 10,
+        "stateId": "03"
+      },
+      "heroImage": "https://static2.tripoto.com/media/filter/tst/img/OgData/1525775328_1522497324_14802312305_d17c9a9380_k_fotor.jpg",
+      "quote": "Uttarakhand, often referred to as the \"Land of the Gods,\" is a state in northern India known for its breathtaking landscapes and spiritual significance. The state is home to the famous Char Dham pilgrimage sites, including Badrinath, Kedarnath, Gangotri, and Yamunotri, which attract millions of devotees and tourists annually",
+      "quoteAuthor": "TravelPaglu Explorer",
+      "about": {
+        "history": "Uttarakhand, earlier known as Uttaranchal, has a rich history connected with ancient Hindu traditions and Himalayan kingdoms.\nThe region was historically divided into two main areas: Garhwal and Kumaon.\nSeveral ancient dynasties, including the Katyuri and Chand dynasties, ruled parts of the region.\nThe Garhwal Kingdom was established around the 9th century and played an important role in the area's history.\nLater, the British took control of Kumaon and Garhwal after the Anglo-Nepalese War (1814–1816).\nAfter India's independence, the region became part of Uttar Pradesh.\nA long movement was carried out by local people demanding a separate hill state.\nOn 9 November 2000, Uttarakhand was created as India's 27th state, originally named Uttaranchal.\nIn 2007, the state was officially renamed Uttarakhand.\nToday, Uttarakhand is known for its Himalayan culture, pilgrimage sites, natural beauty, and important places such as Haridwar, Rishikesh, Kedarnath, and Badrinath.",
+        "culture": "The culture of Uttarakhand is deeply connected with the Himalayas, nature, and local traditions.\nThe people mainly belong to the Garhwali and Kumaoni cultural regions, with their own languages, customs, and traditions.\nTraditional houses are often built using stone, wood, and mud, especially in the hilly areas.\nPeople traditionally wear Garhwali and Kumaoni traditional dresses, especially during festivals and special occasions.",
+        "geography": "Uttarakhand is a Himalayan state in northern India, known for its mountains, valleys, rivers, and forests.\nIt shares borders with Tibet (China) to the north and Nepal to the east.\nThe state is divided mainly into two regions: Garhwal and Kumaon.\nThe Himalayan mountain ranges cover a large part of Uttarakhand, with many peaks rising above 6,000 metres."
+      },
+      "howToReach": [
+        {
+          "mode": "Direct Overnight Government Bus",
+          "steps": "ISBT Bus Stand -> Overnight Express Bus -> Destination Bus Stand",
+          "costPerPerson": 750,
+          "notes": "Book on official state transport portal."
+        }
+      ],
+      "stay": {
+        "budget": [
+          {
+            "name": "Backpacker Hostel / Homestay",
+            "type": "budget",
+            "price": "₹450 - ₹700 / night",
+            "notes": "Clean dorm beds, good Wi-Fi, community bonfire."
+          }
+        ],
+        "premium": [
+          {
+            "name": "Scenic Valley Cottage / Heritage Resort",
+            "type": "premium",
+            "price": "₹3,500 - ₹5,000 / night",
+            "notes": "Uninterrupted nature views and luxury amenities."
+          }
+        ]
+      },
+      "food": [
+        {
+          "name": "Local Signature Thali / Snack",
+          "price": "₹90 - ₹140",
+          "notes": "Must-try at local market stalls.",
+          "isVeg": true
+        }
+      ],
+      "localTravel": [
+        {
+          "mode": "Rented Two-Wheeler / Shared Auto",
+          "price": "₹500/day + petrol or ₹20/ride",
+          "notes": "Carry valid license or negotiate fixed auto fare."
+        }
+      ],
+      "placesToVisit": [
+        {
+          "name": "Main Scenic Attraction / Trek",
+          "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+          "blurb": "A beautiful natural spot best visited during early morning golden hours."
+        }
+      ],
+      "proTips": [
+        "Always carry extra cash as mountain/remote ATMs often run out of power.",
+        "Wake up at dawn to experience the peaceful atmosphere before crowds arrive."
+      ],
+      "budgetItems": [
+        {
+          "label": "Round-trip Bus / Train transit",
+          "amount": 1500,
+          "category": "Travel"
+        },
+        {
+          "label": "2 Nights Backpacker Hostel (₹500/night)",
+          "amount": 1000,
+          "category": "Stay"
+        },
+        {
+          "label": "Local Food & Chai (3 days)",
+          "amount": 900,
+          "category": "Food"
+        },
+        {
+          "label": "Local Transport & Scooty",
+          "amount": 500,
+          "category": "Local Transport"
+        },
+        {
+          "label": "Entry passes & Misc",
+          "amount": 200,
+          "category": "Misc"
+        }
+      ],
+      "gallery": [
+        {
+          "url": "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80",
+          "caption": "Morning mist rolling through the hills."
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80",
+          "caption": "Fresh water cascading down the forest trail."
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80",
+          "caption": "Traditional local wooden homes amidst apple trees."
+        }
+      ],
+      "tags": [
+        "Budget",
+        "Mountains"
+      ],
+      "publishedBy": "user_admin_1",
+      "totalPerPerson": 4100,
+      "_id": "dest_1787919873104",
+      "id": "dest_1787919873104",
+      "createdAt": "2026-08-28T12:24:33.104Z",
+      "updatedAt": "2026-08-28T12:24:33.104Z"
     }
   ],
   "users": [

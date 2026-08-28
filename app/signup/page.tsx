@@ -83,18 +83,9 @@ export default function SignupPage() {
         throw new Error(data.error || 'Registration failed');
       }
 
-      // Auto sign in
-      const signInRes = await signIn('credentials', {
-        redirect: false,
-        email,
-        password,
-      });
-
-      if (signInRes?.error) {
-        router.push('/login');
-      } else {
-        router.push('/home');
-      }
+      // Redirect to verification page
+      router.push(`/verify-email?email=${encodeURIComponent(email)}`);
+      
     } catch (err: any) {
       setError(err.message || 'Registration failed');
     } finally {

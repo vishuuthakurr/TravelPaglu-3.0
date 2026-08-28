@@ -49,6 +49,10 @@ export const authOptions: NextAuthOptions = {
           throw new Error(`Invalid credentials. (${attempt.remainingAttempts} attempts remaining before temporary lockout)`);
         }
 
+        if (user.isVerified === false) {
+          throw new Error(`unverified`); // specific error code to catch in UI
+        }
+
         // 2. Successful Login -> Reset attempts
         resetAttempts(email);
 

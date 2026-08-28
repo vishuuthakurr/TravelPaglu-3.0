@@ -43,7 +43,15 @@ function LoginFormContent() {
       });
 
       if (res?.error) {
-        setError(res.error || 'Invalid email or password');
+        if (res.error === 'unverified') {
+          setError('Your email is not verified. Please check your inbox for the OTP.');
+          // Redirect them to verification page
+          setTimeout(() => {
+            router.push(`/verify-email?email=${encodeURIComponent(email.trim())}`);
+          }, 2000);
+        } else {
+          setError(res.error || 'Invalid email or password');
+        }
       } else {
         router.push(callbackUrl);
         router.refresh();
@@ -75,6 +83,13 @@ function LoginFormContent() {
           Access verified itineraries, bookmarks, and travel diaries.
         </p>
       </div>
+
+      {searchParams.get('verified') === 'true' && (
+        <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-700 flex items-start gap-2">
+          <ShieldCheck className="w-4 h-4 shrink-0 mt-0.5" />
+          <div className="flex-1 leading-relaxed">Email verified successfully! You can now log in.</div>
+        </div>
+      )}
 
       {/* Security Error Alert */}
       {error && (

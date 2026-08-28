@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createUser, findUserByEmail } from '@/lib/storage';
+import { createUser, findUserByEmail, setVerificationOTP } from '@/lib/storage';
 import { validatePasswordStrength } from '@/lib/security';
+import { sendVerificationEmail } from '@/lib/mailer';
+
+function generateOTP(): string {
+  return Math.floor(100000 + Math.random() * 900000).toString();
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -35,7 +40,12 @@ export async function POST(req: NextRequest) {
       role: 'user',
     });
 
-    return NextResponse.json({ message: 'User registered successfully!', user: newUser }, { status: 201 });
+    // Generate and send OTP
+    const otp = generateOTP();
+    await setVerificationOTP(newUser.email, otp);
+    await sendVerificationEmail(newUser.email, otp);
+
+    return NextResponse.json({ message: 'User registered. Please verify your email.', user: newUser }, { status: 201 });
   } catch (error: any) {
     console.error('Registration error:', error);
     return NextResponse.json({ error: error.message || 'Failed to create user' }, { status: 500 });

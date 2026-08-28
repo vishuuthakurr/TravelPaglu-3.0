@@ -21,6 +21,9 @@ interface LocalDB {
     homeCity?: string;
     interests?: string[];
     savedDestinations?: string[];
+    isVerified?: boolean;
+    otpCode?: string | null;
+    otpExpiry?: string | null;
   }>;
 }
 
@@ -44,6 +47,7 @@ function getInitialDB(): LocalDB {
         homeCity: 'Delhi',
         interests: ['Mountains', 'Spiritual', 'Budget', 'Offbeat'],
         savedDestinations: ['dest_1', 'dest_2'],
+        isVerified: true,
       },
       {
         id: 'user_student_1',
@@ -54,6 +58,7 @@ function getInitialDB(): LocalDB {
         homeCity: 'Kanpur',
         interests: ['Budget', 'Mountains', 'Treks'],
         savedDestinations: ['dest_1'],
+        isVerified: true,
       },
     ],
   };
@@ -293,6 +298,7 @@ export async function findUserByEmail(email: string) {
           homeCity: user.homeCity,
           interests: user.interests,
           savedDestinations: (user.savedDestinations || []).map((id) => id.toString()),
+          isVerified: user.isVerified || false,
         };
       }
     } catch (e) {
@@ -307,6 +313,7 @@ export async function findUserByEmail(email: string) {
     ...user,
     _id: user.id,
     password: user.passwordHash,
+    isVerified: user.isVerified || false,
   };
 }
 
@@ -326,6 +333,7 @@ export async function createUser(data: { name: string; email: string; password: 
         homeCity: data.homeCity || '',
         interests: data.interests || [],
         savedDestinations: [],
+        isVerified: false,
       });
       return {
         id: created._id.toString(),
@@ -407,4 +415,70 @@ export async function toggleUserWishlist(userEmail: string, destinationId: strin
   }
   writeLocalDB(db);
   return user.savedDestinations;
+}
+export async function setVerificationOTP(email: string, otp: string): Promise<boolean> {
+  const normalized = email.toLowerCase().trim();
+  const expiry = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
+
+  const mongoose = await connectToDatabase();
+  if (mongoose) {
+    try {
+      const user = await UserModel.findOne({ email: normalized });
+      if (user) {
+        user.otpCode = otp;
+        user.otpExpiry = expiry;
+        await user.save();
+        return true;
+      }
+    } catch (e) {
+      console.warn('Fallback to local DB for setVerificationOTP');
+    }
+  }
+
+  const db = readLocalDB();
+  const idx = db.users.findIndex((u) => u.email.toLowerCase() === normalized);
+  if (idx !== -1) {
+    db.users[idx].otpCode = otp;
+    db.users[idx].otpExpiry = expiry.toISOString();
+    writeLocalDB(db);
+    return true;
+  }
+  return false;
+}
+
+export async function verifyOTP(email: string, otp: string): Promise<boolean> {
+  const normalized = email.toLowerCase().trim();
+  const mongoose = await connectToDatabase();
+  
+  if (mongoose) {
+    try {
+      const user = await UserModel.findOne({ email: normalized });
+      if (user) {
+        if (user.otpCode === otp && user.otpExpiry && new Date() < new Date(user.otpExpiry)) {
+          user.isVerified = true;
+          user.otpCode = null;
+          user.otpExpiry = null;
+          await user.save();
+          return true;
+        }
+        return false;
+      }
+    } catch (e) {
+      console.warn('Fallback to local DB for verifyOTP');
+    }
+  }
+
+  const db = readLocalDB();
+  const idx = db.users.findIndex((u) => u.email.toLowerCase() === normalized);
+  if (idx !== -1) {
+    const user = db.users[idx];
+    if (user.otpCode === otp && user.otpExpiry && new Date() < new Date(user.otpExpiry)) {
+      db.users[idx].isVerified = true;
+      db.users[idx].otpCode = null;
+      db.users[idx].otpExpiry = null;
+      writeLocalDB(db);
+      return true;
+    }
+  }
+  return false;
 }
