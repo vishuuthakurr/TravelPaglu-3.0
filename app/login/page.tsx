@@ -63,12 +63,6 @@ function LoginFormContent() {
     }
   };
 
-  const handleQuickLogin = (demoEmail: string, demoPass: string) => {
-    setEmail(demoEmail);
-    setPassword(demoPass);
-    setError('');
-  };
-
   return (
     <div className="bg-white rounded-3xl p-8 shadow-clay border border-forest-100 space-y-6">
       {/* Header */}
@@ -152,34 +146,8 @@ function LoginFormContent() {
         </button>
       </form>
 
-      {/* 1-Click Quick Demo Switchers */}
-      <div className="pt-4 border-t border-forest-100 space-y-2">
-        <span className="text-[11px] font-bold text-forest-500 uppercase tracking-wider block text-center">
-          1-Click Test Credentials:
-        </span>
-        <div className="grid grid-cols-2 gap-2">
-          <button
-            type="button"
-            onClick={() => handleQuickLogin('student@travelpaglu.com', 'student123')}
-            className="p-2.5 rounded-xl border border-forest-200 bg-forest-50/70 hover:bg-forest-100 text-forest-800 text-xs font-semibold flex items-center justify-center gap-1.5 transition text-left"
-          >
-            <GraduationCap className="w-4 h-4 text-forest-600" />
-            <span>Student Demo</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => handleQuickLogin('admin@travelpaglu.com', 'admin123')}
-            className="p-2.5 rounded-xl border border-terracotta-200 bg-terracotta-50/70 hover:bg-terracotta-100 text-terracotta-800 text-xs font-semibold flex items-center justify-center gap-1.5 transition text-left"
-          >
-            <ShieldCheck className="w-4 h-4 text-terracotta-600" />
-            <span>Admin Demo</span>
-          </button>
-        </div>
-      </div>
-
       {/* Security Disclaimer & Signup Link */}
-      <div className="text-center pt-2 space-y-2">
+      <div className="text-center pt-2 space-y-2 mt-4">
         <p className="text-xs text-forest-600">
           New to TravelPaglu?{' '}
           <Link href="/signup" className="font-bold text-terracotta-600 hover:underline">
